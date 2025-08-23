@@ -1,0 +1,18 @@
+print("Hello world\nHello world\nHello world\nHello world")
+
+print((99 ** 3) * 8)
+
+USER_NAME = input("enter your name : ")
+MY_NAME = "Youssef"
+
+if USER_NAME == MY_NAME.lower():
+    print("WOOW! our names are the same :", USER_NAME)
+else:
+    print(":( we don't have tha same name ")
+
+USER_HEIGHT = int(input("Enter your height in centimeters : "))
+if USER_HEIGHT <= 145:
+    print("you are tall enough to ride")
+else:
+    print("Sorry! you need to grow some more to ride")
+    
