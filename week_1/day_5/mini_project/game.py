@@ -32,7 +32,7 @@ class Game:
         user_choice = self.get_user_item()
         computer_choise = self.get_computer_item()
         result = self.get_game_result(user_choice, computer_choise)
-        if result == "drew!":
+        if result == "draw":
             print(f"You choose: '{user_choice}'\n The computer choose: '{computer_choise}'\n Result: Draw")
         elif result == "win!":
             print(f"You choose: '{user_choice}'\n The computer choose: '{computer_choise}'\n Result: Win")
