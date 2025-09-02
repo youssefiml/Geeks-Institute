@@ -40,3 +40,4 @@ class Game:
             print(f"You choose: '{user_choice}'\n The computer choose: '{computer_choise}'\n Result: loss")
         return result
     
+    
