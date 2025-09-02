@@ -9,6 +9,16 @@
             "database": "public",
             "username": "postgres",
             "password": "Youssef2003@"
+        },
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "Geeks",
+            "database": "bootcamp",
+            "username": "postgres",
+            "password": "Youssef2003@"
         }
     ]
 }
