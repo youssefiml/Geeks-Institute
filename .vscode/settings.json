@@ -19,6 +19,16 @@
             "database": "bootcamp",
             "username": "postgres",
             "password": "Youssef2003@"
+        },
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "Exercises",
+            "database": "dvdrental",
+            "username": "postgres",
+            "password": "Youssef2003@"
         }
     ]
 }
