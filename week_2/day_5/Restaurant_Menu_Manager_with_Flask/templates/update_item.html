@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head><title>Update Item</title></head>
+<body>
+    <h1>Update Item</h1>
+    <form method="POST">
+        Name: <input type="text" name="name" value="{{ item[0] }}" required><br>
+        Price: <input type="number" name="price" value="{{ item[1] }}" required><br>
+        <input type="submit" value="Update">
+    </form>
+    <a href="{{ url_for('menu') }}">Back to Menu</a>
+</body>
+</html>

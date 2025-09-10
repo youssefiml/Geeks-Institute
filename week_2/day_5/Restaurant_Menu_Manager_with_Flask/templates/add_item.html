@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head><title>Add Item</title></head>
+<body>
+    <h1>Add New Item</h1>
+    <form method="POST">
+        Name: <input type="text" name="name" required><br>
+        Price: <input type="number" name="price" required><br>
+        <input type="submit" value="Add">
+    </form>
+    <a href="{{ url_for('menu') }}">Back to Menu</a>
+</body>
+</html>

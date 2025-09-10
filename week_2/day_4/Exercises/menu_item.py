@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from psycopg2.extras import RealDictCursor
 from config import db_connection
 
