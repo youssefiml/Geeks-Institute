@@ -1,0 +1,134 @@
+[
+  {
+    "firstName": "Amina",
+    "lastName": "El Idrissi",
+    "email": "amina.elidrissi@example.com",
+    "location": "Casablanca",
+    "experienceYears": 1,
+    "skills": ["React", "JavaScript", "HTML", "CSS", "Git"],
+    "availabilityDate": "2025-10-01",
+    "stage": "SOURCED",
+    "notes": "Portfolio showcases modern React applications with clean UI design"
+  },
+  {
+    "firstName": "Youssef",
+    "lastName": "imlilss",
+    "email": "youssefimlilss10@gmail.com",
+    "location": "Casablanca",
+    "experienceYears": 0,
+    "skills": ["React", "JavaScript", "Node.js", "Git", "CSS"],
+    "availabilityDate": "2025-09-15",
+    "stage": "SOURCED",
+    "notes": "Recent bootcamp graduate with strong foundation in modern web development"
+  },
+  {
+    "firstName": "Fatima",
+    "lastName": "Zahiri",
+    "email": "fatima.zahiri@example.com",
+    "location": "Rabat",
+    "experienceYears": 2,
+    "skills": ["React", "JavaScript", "TypeScript", "Redux", "Git"],
+    "availabilityDate": "2025-11-01",
+    "stage": "SCREEN",
+    "notes": "Mid-level developer with experience in large-scale React applications"
+  },
+  {
+    "firstName": "Omar",
+    "lastName": "Alami",
+    "email": "omar.alami@example.com",
+    "location": "Casablanca",
+    "experienceYears": 1,
+    "skills": ["JavaScript", "HTML", "CSS", "Git", "Node.js"],
+    "availabilityDate": "2025-09-20",
+    "stage": "SOURCED",
+    "notes": "Strong vanilla JavaScript skills with interest in modern frameworks"
+  },
+  {
+    "firstName": "Sophia",
+    "lastName": "Mansouri",
+    "email": "sophia.mansouri@example.com",
+    "location": "Casablanca",
+    "experienceYears": 0,
+    "skills": ["React", "JavaScript", "HTML", "CSS", "Figma"],
+    "availabilityDate": "2025-09-25",
+    "stage": "SOURCED",
+    "notes": "UI/UX focused developer with design background and React skills"
+  },
+  {
+    "firstName": "Ahmed",
+    "lastName": "Tazi",
+    "email": "ahmed.tazi@example.com",
+    "location": "Marrakech",
+    "experienceYears": 3,
+    "skills": ["Python", "Django", "SQL", "Git", "Docker"],
+    "availabilityDate": "2025-12-01",
+    "stage": "INTERVIEW",
+    "notes": "Senior backend developer with strong database design experience"
+  },
+  {
+    "firstName": "Lina",
+    "lastName": "Berrada",
+    "email": "lina.berrada@example.com",
+    "location": "Casablanca",
+    "experienceYears": 1,
+    "skills": ["React", "JavaScript", "TypeScript", "Git", "Jest"],
+    "availabilityDate": "2025-10-15",
+    "stage": "SOURCED",
+    "notes": "Quality-focused developer with testing experience and clean code practices"
+  },
+  {
+    "firstName": "Karim",
+    "lastName": "Ouali",
+    "email": "karim.ouali@example.com",
+    "location": "Fes",
+    "experienceYears": 2,
+    "skills": ["Python", "Flask", "SQL", "JavaScript", "Git"],
+    "availabilityDate": "2025-11-15",
+    "stage": "SOURCED",
+    "notes": "Full-stack developer with experience in both frontend and backend technologies"
+  },
+  {
+    "firstName": "Nadia",
+    "lastName": "Cherkaoui",
+    "email": "nadia.cherkaoui@example.com",
+    "location": "Casablanca",
+    "experienceYears": 0,
+    "skills": ["React", "JavaScript", "HTML", "CSS", "Bootstrap"],
+    "availabilityDate": "2025-09-30",
+    "stage": "SOURCED",
+    "notes": "Fresh graduate with internship experience and portfolio of responsive web applications"
+  },
+  {
+    "firstName": "Mehdi",
+    "lastName": "Lahlou",
+    "email": "mehdi.lahlou@example.com",
+    "location": "Casablanca",
+    "experienceYears": 2,
+    "skills": ["JavaScript", "Node.js", "React", "MongoDB", "Git"],
+    "availabilityDate": "2025-10-10",
+    "stage": "SCREEN",
+    "notes": "Full-stack developer with MERN stack expertise and API development experience"
+  },
+  {
+    "firstName": "Salma",
+    "lastName": "Bennani",
+    "email": "salma.bennani@example.com",
+    "location": "Rabat",
+    "experienceYears": 1,
+    "skills": ["Python", "SQL", "Excel", "Git", "Pandas"],
+    "availabilityDate": "2025-11-20",
+    "stage": "SOURCED",
+    "notes": "Data-focused developer with strong analytical skills and database experience"
+  },
+  {
+    "firstName": "Hamza",
+    "lastName": "Rifai",
+    "email": "hamza.rifai@example.com",
+    "location": "Casablanca",
+    "experienceYears": 3,
+    "skills": ["React", "JavaScript", "TypeScript", "Redux", "GraphQL"],
+    "availabilityDate": "2026-01-15",
+    "stage": "INTERVIEW",
+    "notes": "Senior frontend developer with extensive React ecosystem knowledge"
+  }
+]

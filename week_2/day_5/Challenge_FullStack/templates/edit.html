@@ -1,0 +1,50 @@
+<!-- project/templates/edit.html -->
+{% extends 'base.html' %}
+{% block title %}Edit {{ item.name }}{% endblock %}
+{% block content %}
+<h1 class="text-2xl font-bold mb-4">Edit Item</h1>
+
+<form method="post" class="bg-white p-4 rounded shadow max-w-lg">
+  <label class="block mb-2">
+    <span class="text-gray-700">Name</span>
+    <input type="text" name="name" value="{{ item.name }}" class="mt-1 block w-full border rounded px-2 py-1" required>
+  </label>
+
+  <label class="block mb-2">
+    <span class="text-gray-700">Description</span>
+    <textarea name="description" class="mt-1 block w-full border rounded px-2 py-1">{{ item.description }}</textarea>
+  </label>
+
+  <label class="block mb-2">
+    <span class="text-gray-700">Price</span>
+    <input type="text" name="price" value="{{ item.price }}" class="mt-1 block w-full border rounded px-2 py-1" required>
+  </label>
+
+  <label class="block mb-2">
+    <span class="text-gray-700">Category</span>
+    <select name="category_id" class="mt-1 block w-full border rounded px-2 py-1">
+      <option value="">-- Select --</option>
+      {% for c in categories %}
+        <option value="{{ c.id }}" {% if item.category_id == c.id %}selected{% endif %}>{{ c.name }}</option>
+      {% endfor %}
+    </select>
+  </label>
+
+  <div class="mb-4">
+    <span class="text-gray-700">Assign Chefs</span>
+    <div class="mt-2 space-y-1">
+      {% for chef in chefs %}
+        <label class="inline-flex items-center">
+          <input type="checkbox" name="chefs" value="{{ chef.id }}" class="mr-2" {% if chef in item.chefs %}checked{% endif %}>
+          <span class="text-sm">{{ chef.name }}</span>
+        </label><br>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="flex space-x-2">
+    <button class="px-4 py-2 bg-yellow-600 text-white rounded">Save</button>
+    <a href="{{ url_for('index') }}" class="px-4 py-2 bg-gray-200 rounded">Cancel</a>
+  </div>
+</form>
+{% endblock %}
