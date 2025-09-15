@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Document</title>
+</head>
+<body>
+    <div id="container">Users:
+        <ul class="list">
+            <li>John</li>
+            <li>Pete</li>
+        </ul>
+        <ul class="list">
+            <li>David</li>
+            <li>Sarah</li>
+            <li>Dan</li>
+        </ul>
+    </div>
+    <script>
+        const div = document.getElementById("container");
+        console.log(div);
+
+        document.querySelectorAll("ul")[0].children[1].textContent = "Richard";
+        document.querySelectorAll("ul")[1].children[1].remove();
+
+        const lists = document.querySelectorAll("ul");
+        lists.forEach(list => list.children[0].textContent = "Youssef");
+
+        lists.forEach(list => list.classList.add("student_list"));
+        lists[0].classList.add("university", "attendance");
+
+        div.style.backgroundColor = "lightblue";
+        div.style.padding = "10px";
+
+        document.querySelectorAll("li").forEach(li => {
+            if (li.textContent === "Dan") li.style.display = "none";
+            if (li.textContent === "Richard") li.style.border = "1px solid black";
+        });
+
+        document.body.style.fontSize = "18px";
+
+        if (div.style.backgroundColor === "lightblue") {
+            const users = Array.from(div.textContent.match(/\w+/g));
+            alert(`Hello ${users.join(" and ")}`);
+        };
+    </script>
+</body>
+</html>

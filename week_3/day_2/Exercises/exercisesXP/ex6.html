@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        const nav = document.getElementById("navBar");
+        nav.setAttribute("id", "socialNetworkNavigation");
+
+        const newLi = document.createElement("li");
+        newLi.textContent = "Logout";
+        nav.querySelector("ul").appendChild(newLi);
+
+        const ul = nav.querySelector("ul");
+        console.log("First:", ul.firstElementChild.textContent);
+        console.log("Last:", ul.lastElementChild.textContent);
+    </script>
+</head>
+<body>
+    <div id="navBar">
+        <ul>
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">My Friends</a></li>
+            <li><a href="#">Messenger</a></li>
+            <li><a href="#">My Pics</a></li>
+        </ul>
+    </div>
+</body>
+</html>
