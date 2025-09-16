@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+        <label for="fname">First name:</label><br>
+        <input type="text" id="fname" name="firstname"><br>
+        <label for="lname">Last name:</label><br>
+        <input type="text" id="lname" name="lastname"><br><br>
+        <input type="submit" value="Submit" id="submit">
+    </form> 
+    <ul class="usersAnswer"></ul>
+
+    <script>
+        // 1
+        const form = document.querySelector("form");
+        console.log(form);
+
+        // 2
+        const fNameId = document.getElementById("fname");
+        const lNameId = document.getElementById("lname");
+        console.log(fname)
+        console.log(lname)
+
+        // 3
+        const fName = document.getElementsByName("fname");
+        const lName = document.getElementsByName("lname");
+        console.log(fname)
+        console.log(lname)
+
+        // 4
+        const button = document.getElementById("button")
+        button.addEventListener("submit", function(event){
+            button.event.preventDefault
+        })
+    </script>
+</body>
+</html>

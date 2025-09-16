@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8" />
+  <title>Challenge: Mad Libs</title>
+ </head>
+ <body>
+
+    <h1>Mad Libs</h1>
+
+    <form id="libform">
+        <label for="noun">Noun:</label><input type="text" id="noun"><br>
+        <label for="adjective">Adjective:</label><input type="text" id="adjective"><br>
+        <label for="person">Someone's Name:</label><input type="text" id="person"><br>
+        <label for="verb">Verb:</label><input type="text" id="verb"><br>
+        <label for="place">A place:</label><input type="text" id="place"><br>
+        <button id="lib-button">Lib it!</button>
+    </form>
+
+    <p>Generated story: 
+    <span id="story"></span>
+    </p>
+
+    <script>
+        document.querySelector("#libform").addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        let noun = document.querySelector("#noun").value;
+        let adjective = document.querySelector("#adjective").value;
+        let person = document.querySelector("#person").value;
+        let verb = document.querySelector("#verb").value;
+        let place = document.querySelector("#place").value;
+        if (!noun || !adjective || !person || !verb || !place) {
+            console.log("Please fill in all fields.");
+            return;
+        }
+        let story = `Once upon a time, there was a ${adjective} ${noun} who loved to ${verb} in ${place}. One day, ${person} joined in on the fun!`;
+        document.querySelector("#story").textContent = story;
+        });         
+        document.querySelector("#story").style.display = "block";
+        document.querySelector("#story").style.border = "2px solid black";
+        document.querySelector("#story").style.padding = "10px";
+        document.querySelector("#story").style.marginTop = "20px";
+        document.querySelector("#story").style.backgroundColor = "#f9f9f9";
+        document.querySelector("#story").style.fontFamily = "Arial, sans-serif";
+        document.querySelector("#story").style.lineHeight = "1.5";
+        if (document.querySelector("#story").textContent === "") {
+            console.error("Story is not being displayed.");
+        }
+        document.querySelector("#shuffle").addEventListener("click", function() {
+        let stories = [
+            `Once upon a time, there was a ${adjective} ${noun} who loved to ${verb} in ${place}. One day, ${person} joined in on the fun!`,
+            `In a ${place} far away, a ${adjective} ${noun} was ${verb}ing when ${person} appeared out of nowhere!`,
+            `${person} was on a quest to find the ${adjective} ${noun} who could ${verb} like no other in ${place}.`
+        ];
+        stories.sort(() => Math.random() - 0.5);
+        document.querySelector("#story").textContent = stories[0];
+        });
+    </script>
+
+ </body>
+</html>

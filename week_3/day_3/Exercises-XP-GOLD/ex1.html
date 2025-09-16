@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <select id="genres">
+        <option value="rock">Rock</option>
+        <option value="blues" selected>Blues</option>
+    </select>
+    <p id="selected-value"></p>
+
+    <script>
+        const genresSelect = document.getElementById('genres');
+        document.getElementById('showGenre').addEventListener('click', () => {
+            alert('Selected Genre: ' + genresSelect.value);
+        });
+
+        const newOption = document.createElement('option');
+        newOption.value = 'classic';
+        newOption.text = 'Classic';
+        newOption.selected = true;
+        genresSelect.appendChild(newOption);
+    </script>
+</body>
+</html>
