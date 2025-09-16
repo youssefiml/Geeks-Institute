@@ -4,16 +4,13 @@
 
 {% block content %}
 <div class="fade-in max-w-2xl mx-auto">
-    <!-- Header -->
     <div class="text-center mb-8">
         <h2 class="text-3xl font-bold text-white mb-2">Add New Artist</h2>
         <p class="text-gray-300">Add a new musician or band to your collection</p>
     </div>
 
-    <!-- Form -->
     <div class="bg-white/10 rounded-lg p-6 border border-white/20 backdrop-blur-sm">
         <form method="POST" class="space-y-6">
-            <!-- Artist Name -->
             <div>
                 <label for="name" class="block text-white font-medium mb-2">
                     <i class="fas fa-user mr-2"></i>Artist Name *
@@ -28,7 +25,6 @@
                 <p class="text-gray-400 text-sm mt-1">This can be a solo artist or band name</p>
             </div>
 
-            <!-- Country -->
             <div>
                 <label for="country" class="block text-white font-medium mb-2">
                     <i class="fas fa-flag mr-2"></i>Country/Origin *
@@ -77,7 +73,6 @@
                 </datalist>
             </div>
 
-            <!-- Formation Year -->
             <div>
                 <label for="formed_year" class="block text-white font-medium mb-2">
                     <i class="fas fa-calendar mr-2"></i>Formation Year (Optional)
@@ -93,7 +88,6 @@
                 <p class="text-gray-400 text-sm mt-1">Year the artist started or band was formed</p>
             </div>
 
-            <!-- Form Actions -->
             <div class="flex flex-col sm:flex-row gap-4 pt-6">
                 <button type="submit" 
                         class="flex-1 bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg transition-colors font-medium flex items-center justify-center">
@@ -108,7 +102,6 @@
         </form>
     </div>
 
-    <!-- Tips -->
     <div class="mt-6 bg-blue-500/20 border border-blue-500/50 rounded-lg p-4">
         <h3 class="text-blue-100 font-medium mb-2 flex items-center">
             <i class="fas fa-lightbulb mr-2"></i>Tips for Adding Artists
@@ -121,7 +114,6 @@
         </ul>
     </div>
 
-    <!-- Quick Links -->
     <div class="mt-6 text-center">
         <div class="text-gray-400 text-sm mb-2">Want to add an album instead?</div>
         <a href="{{ url_for('create_album') }}" 
@@ -133,7 +125,6 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // Auto-capitalize first letters
     const nameInput = document.getElementById('name');
     const countryInput = document.getElementById('country');
     
@@ -148,26 +139,21 @@ document.addEventListener('DOMContentLoaded', function() {
     capitalizeWords(nameInput);
     capitalizeWords(countryInput);
     
-    // Auto-suggest formation year based on common patterns
     nameInput.addEventListener('blur', function() {
         const name = this.value.toLowerCase();
         const yearInput = document.getElementById('formed_year');
         
         if (!yearInput.value) {
-            // Some heuristics for suggesting formation years
             if (name.includes('classic') || name.includes('vintage')) {
-                // Suggest older era
                 const suggestions = [1950, 1960, 1970];
                 yearInput.value = suggestions[Math.floor(Math.random() * suggestions.length)];
             } else if (name.includes('new') || name.includes('young')) {
-                // Suggest more recent era
                 const suggestions = [2000, 2010, 2015];
                 yearInput.value = suggestions[Math.floor(Math.random() * suggestions.length)];
             }
         }
     });
 
-    // Add visual feedback for form completion
     const form = document.querySelector('form');
     const inputs = form.querySelectorAll('input[required]');
     
@@ -175,7 +161,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const filledInputs = Array.from(inputs).filter(input => input.value.trim() !== '');
         const progress = (filledInputs.length / inputs.length) * 100;
         
-        // Change submit button style based on completion
         const submitBtn = form.querySelector('button[type="submit"]');
         if (progress === 100) {
             submitBtn.classList.remove('bg-purple-600', 'hover:bg-purple-700');
@@ -192,7 +177,6 @@ document.addEventListener('DOMContentLoaded', function() {
         input.addEventListener('input', checkFormCompletion);
     });
     
-    // Initial check
     checkFormCompletion();
 });
 </script>
