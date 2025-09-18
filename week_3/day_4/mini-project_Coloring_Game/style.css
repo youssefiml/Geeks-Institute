@@ -1,0 +1,33 @@
+body {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+#colors {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.color {
+  width: 40px;
+  height: 40px;
+  margin: 0 5px;
+  border: 2px solid #333;
+  cursor: pointer;
+}
+
+#grid {
+  display: grid;
+  grid-template-columns: repeat(16, 30px);
+  grid-template-rows: repeat(16, 30px);
+  gap: 2px;
+  justify-content: center;
+}
+
+.square {
+  width: 30px;
+  height: 30px;
+  background-color: white;
+  border: 1px solid #ccc;
+}
