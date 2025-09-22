@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Display Data</title>
+</head>
+<body>
+  <h1>Submitted Data</h1>
+
+  <section id="output"></section>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const name = params.get("name");
+    const lastname = params.get("lastname");
+
+    const outputSection = document.getElementById("output");
+    outputSection.innerHTML =   
+      `<p><strong>First Name:</strong> ${name}</p>
+      <p><strong>Last Name:</strong> ${lastname}</p>`;
+  </script>
+</body>
+</html>

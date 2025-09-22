@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+    <title>Quote Generator</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Quote Generator</h1>
+            <section id="quote-section" class="quote-display">
+            <div>Click "Generate Quote" to see a random quote!</div>
+        </section>
+        
+        <button onclick="generateQuote()">Generate Quote</button>
+        
+        <div id="quote-buttons" style="display: none;">
+            <button onclick="countCharsWithSpaces()">Characters (with spaces)</button>
+            <button onclick="countCharsWithoutSpaces()">Characters (without spaces)</button>
+            <button onclick="countWords()">Word Count</button>
+            <button onclick="likeQuote()">Like ❤️</button>
+        </div>
+        
+        <div id="stats" class="stats" style="display: none;"></div>
+    </div>
+
+    <div class="container">
+        <h2>Add New Quote</h2>
+        <form onsubmit="addQuote(event)">
+            <div class="form-group">
+                <textarea id="new-quote" placeholder="Enter quote here..." rows="3" required></textarea>
+            </div>
+            <div class="form-group">
+                <input type="text" id="new-author" placeholder="Author name" required>
+            </div>
+            <button type="submit">Add Quote</button>
+        </form>
+    </div>
+
+    <div class="container">
+        <h2>Filter by Author</h2>
+        <form onsubmit="filterByAuthor(event)">
+            <div class="form-group">
+                <input type="text" id="filter-author" placeholder="Enter author name" required>
+            </div>
+            <button type="submit">Filter Quotes</button>
+        </form>
+        
+        <div id="filter-results" class="filter-results" style="display: none;">
+            <div id="filtered-quote"></div>
+            <div style="margin-top: 15px;">
+                <button onclick="previousFilteredQuote()">Previous</button>
+                <button onclick="nextFilteredQuote()">Next</button>
+                <span id="filter-counter"></span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
