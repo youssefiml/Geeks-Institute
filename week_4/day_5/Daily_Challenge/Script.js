@@ -6,7 +6,7 @@ function isAnagram(str1, str2) {
 }
 
 // Test Cases
-console.log(isAnagram("Astronomer", "Moon starer"));      // ➞ true
-console.log(isAnagram("School master", "The classroom")); // ➞ true
-console.log(isAnagram("The Morse Code", "Here come dots"));// ➞ true
-console.log(isAnagram("Hello", "World"));                 // ➞ false
+console.log(isAnagram("Astronomer", "Moon starer"));        // ➞ true
+console.log(isAnagram("School master", "The classroom"));   // ➞ true
+console.log(isAnagram("The Morse Code", "Here come dots")); // ➞ true
+console.log(isAnagram("Hello", "World"));                   // ➞ false
