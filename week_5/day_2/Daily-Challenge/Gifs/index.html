@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>GIF Search</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        
+        input {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            margin-right: 10px;
+        }
+        
+        button {
+            padding: 10px 15px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        
+        button:hover {
+            background-color: #0056b3;
+        }
+        
+        #deleteAllBtn {
+            background-color: #dc3545;
+            margin: 20px 0;
+        }
+        
+        #deleteAllBtn:hover {
+            background-color: #c82333;
+        }
+        
+        #gifsContainer div {
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        #gifsContainer button {
+            background-color: #dc3545;
+            margin-top: 10px;
+        }
+        
+        #gifsContainer button:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+    <form id="searchForm">
+        <input type="text" id="searchInput" placeholder="Enter category">
+        <button type="submit">Search GIF</button>
+    </form>
+    
+    <button id="deleteAllBtn">DELETE ALL</button>
+    
+    <div id="gifsContainer"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>

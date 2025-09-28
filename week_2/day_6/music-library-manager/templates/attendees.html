@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% block title %}Attendees - Event Management System{% endblock %}
+
+{% block content %}
+<div class="px-4 sm:px-6 lg:px-8">
+    <!-- Header Section -->
+    <div class="glass-effect rounded-2xl p-6 mb-8">
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+            <div>
+                <h1 class="text-3xl font-bold text-white mb-2">
+                    <i class="fas fa-user-friends mr-2"></i>Attendees
+                </h1>
+                <p class="text-blue-100">Manage event attendees and their registrations</p>
+            </div>
+            <div class="mt-4 md:mt-0">
+                <a href="{{ url_for('create_attendee') }}" class="bg-white text-blue-600 px-6 py-2 rounded-full font-medium hover:bg-blue-50 transition duration-200 shadow-md">
+                    <i class="fas fa-user-plus mr-2"></i>Add New Attendee
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Attendees List -->
+    {% if attendees %}
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {% for attendee in attendees %}
+        <div class="bg-white rounded-2xl shadow-lg card-hover overflow-hidden">
+            <div class="p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="bg-purple-100 rounded-full p-3">
+                        <i class="fas fa-user text-purple-600 text-xl"></i>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-2xl font-bold text-purple-600">{{ attendee.event_count }}</span>
+                        <p class="text-sm text-gray-500">Events</p>
+                    </div>
+                </div>
+                
+                <h3 class="text-xl font-bold text-gray-900 mb-3">{{ attendee.name }}</h3>
+                
+                <div class="space-y-2 mb-4">
+                    <div class="flex items-center text-gray-600">
+                        <i class="fas fa-envelope mr-3 w-4"></i>
+                        <span class="text-sm">{{ attendee.email }}</span>
+                    </div>
+                    <div class="flex items-center text-gray-600">
+                        <i class="fas fa-phone mr-3 w-4"></i>
+                        <span class="text-sm">{{ attendee.phone }}</span>
+                    </div>
+                    <div class="flex items-center text-gray-600">
+                        <i class="fas fa-calendar-plus mr-3 w-4"></i>
+                        <span class="text-sm">Joined {{ attendee.created_at.strftime('%B %Y') }}</span>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between pt-4 border-t border-gray-200">
+                    <div class="text-sm text-gray-500">
+                        {% if attendee.event_count == 0 %}
+                            No events attended
+                        {% elif attendee.event_count == 1 %}
+                            1 event registered
+                        {% else %}
+                            {{ attendee.event_count }} events registered
+                        {% endif %}
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium 
+                                   {% if attendee.event_count == 0 %}bg-gray-100 text-gray-800
+                                   {% elif attendee.event_count <= 3 %}bg-yellow-100 text-yellow-800
+                                   {% else %}bg-green-100 text-green-800{% endif %}">
+                            {% if attendee.event_count == 0 %}New
+                            {% elif attendee.event_count <= 3 %}Regular
+                            {% else %}Active{% endif %}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    
+    {% else %}
+    <!-- Empty State -->
+    <div class="glass-effect rounded-2xl p-12 text-center">
+        <i class="fas fa-user-friends text-6xl text-blue-200 mb-4"></i>
+        <h3 class="text-2xl font-bold text-white mb-2">No attendees yet</h3>
+        <p class="text-blue-100 mb-6">Start by adding your first event attendee.</p>
+        <a href="{{ url_for('create_attendee') }}" class="bg-white text-blue-600 px-8 py-3 rounded-full font-medium hover:bg-blue-50 transition duration-200 shadow-md">
+            <i class="fas fa-user-plus mr-2"></i>Add First Attendee
+        </a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

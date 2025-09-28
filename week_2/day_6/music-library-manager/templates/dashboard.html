@@ -1,0 +1,301 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Event Management System{% endblock %}
+
+{% block content %}
+<div class="px-4 sm:px-6 lg:px-8">
+    <!-- Header Section -->
+    <div class="glass-effect rounded-2xl p-6 mb-8">
+        <div class="flex items-center justify-between">
+            <div>
+                <h1 class="text-3xl font-bold text-white mb-2">
+                    <i class="fas fa-chart-bar mr-2"></i>Dashboard
+                </h1>
+                <p class="text-blue-100">Analytics and insights for your event management system</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <!-- Total Events -->
+        <div class="bg-white rounded-2xl shadow-lg p-6 card-hover">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-gray-500 text-sm font-medium">Total Events</p>
+                    <p class="text-3xl font-bold text-gray-900">{{ stats.total_events }}</p>
+                </div>
+                <div class="bg-blue-100 rounded-full p-3">
+                    <i class="fas fa-calendar text-blue-600 text-xl"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Total Organizers -->
+        <div class="bg-white rounded-2xl shadow-lg p-6 card-hover">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-gray-500 text-sm font-medium">Total Organizers</p>
+                    <p class="text-3xl font-bold text-gray-900">{{ stats.total_organizers }}</p>
+                </div>
+                <div class="bg-green-100 rounded-full p-3">
+                    <i class="fas fa-users text-green-600 text-xl"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Total Attendees -->
+        <div class="bg-white rounded-2xl shadow-lg p-6 card-hover">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-gray-500 text-sm font-medium">Total Attendees</p>
+                    <p class="text-3xl font-bold text-gray-900">{{ stats.total_attendees }}</p>
+                </div>
+                <div class="bg-purple-100 rounded-full p-3">
+                    <i class="fas fa-user-friends text-purple-600 text-xl"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Total Registrations -->
+        <div class="bg-white rounded-2xl shadow-lg p-6 card-hover">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-gray-500 text-sm font-medium">Total Registrations</p>
+                    <p class="text-3xl font-bold text-gray-900">{{ stats.total_registrations }}</p>
+                </div>
+                <div class="bg-yellow-100 rounded-full p-3">
+                    <i class="fas fa-ticket-alt text-yellow-600 text-xl"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Key Insights -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+        <!-- Key Metrics -->
+        <div class="bg-white rounded-2xl shadow-lg p-6">
+            <h3 class="text-xl font-bold text-gray-900 mb-6">
+                <i class="fas fa-trophy mr-2"></i>Key Insights
+            </h3>
+            <div class="space-y-4">
+                <div class="flex items-center justify-between p-4 bg-blue-50 rounded-lg">
+                    <div class="flex items-center">
+                        <i class="fas fa-calendar-check text-blue-600 mr-3"></i>
+                        <span class="font-medium text-gray-900">Upcoming Events</span>
+                    </div>
+                    <span class="text-2xl font-bold text-blue-600">{{ stats.upcoming_events }}</span>
+                </div>
+
+                <div class="flex items-center justify-between p-4 bg-green-50 rounded-lg">
+                    <div class="flex items-center">
+                        <i class="fas fa-star text-green-600 mr-3"></i>
+                        <span class="font-medium text-gray-900">Most Popular Event</span>
+                    </div>
+                    <span class="text-sm font-medium text-green-600 text-right">{{ stats.most_popular_event }}</span>
+                </div>
+
+                <div class="flex items-center justify-between p-4 bg-purple-50 rounded-lg">
+                    <div class="flex items-center">
+                        <i class="fas fa-user-crown text-purple-600 mr-3"></i>
+                        <span class="font-medium text-gray-900">Most Active Organizer</span>
+                    </div>
+                    <span class="text-sm font-medium text-purple-600 text-right">{{ stats.most_active_organizer }}</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="bg-white rounded-2xl shadow-lg p-6">
+            <h3 class="text-xl font-bold text-gray-900 mb-6">
+                <i class="fas fa-rocket mr-2"></i>Quick Actions
+            </h3>
+            <div class="space-y-3">
+                <a href="{{ url_for('create_event') }}" class="block w-full bg-blue-600 text-white text-center py-3 rounded-lg hover:bg-blue-700 transition duration-200">
+                    <i class="fas fa-plus mr-2"></i>Create New Event
+                </a>
+                <a href="{{ url_for('create_organizer') }}" class="block w-full bg-green-600 text-white text-center py-3 rounded-lg hover:bg-green-700 transition duration-200">
+                    <i class="fas fa-user-plus mr-2"></i>Add Organizer
+                </a>
+                <a href="{{ url_for('create_attendee') }}" class="block w-full bg-purple-600 text-white text-center py-3 rounded-lg hover:bg-purple-700 transition duration-200">
+                    <i class="fas fa-user-friends mr-2"></i>Add Attendee
+                </a>
+                <a href="{{ url_for('index') }}" class="block w-full bg-gray-600 text-white text-center py-3 rounded-lg hover:bg-gray-700 transition duration-200">
+                    <i class="fas fa-list mr-2"></i>View All Events
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Charts Section -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+        <!-- Events by Organizer Chart -->
+        <div class="bg-white rounded-2xl shadow-lg p-6">
+            <h3 class="text-xl font-bold text-gray-900 mb-6">
+                <i class="fas fa-chart-pie mr-2"></i>Events by Organizer
+            </h3>
+            <div class="relative h-64">
+                <canvas id="organizerChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Popular Events Chart -->
+        <div class="bg-white rounded-2xl shadow-lg p-6">
+            <h3 class="text-xl font-bold text-gray-900 mb-6">
+                <i class="fas fa-chart-bar mr-2"></i>Most Popular Events
+            </h3>
+            <div class="relative h-64">
+                <canvas id="popularChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Monthly Events Chart -->
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-8">
+        <h3 class="text-xl font-bold text-gray-900 mb-6">
+            <i class="fas fa-chart-line mr-2"></i>Event Trends Over Time
+        </h3>
+        <div class="relative h-80">
+            <canvas id="monthlyChart"></canvas>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Chart colors
+    const colors = [
+        '#3B82F6', '#10B981', '#8B5CF6', '#F59E0B', '#EF4444',
+        '#6B7280', '#EC4899', '#14B8A6', '#F97316', '#84CC16'
+    ];
+
+    // Fetch and render organizer statistics
+    fetch('/api/stats/organizers')
+        .then(response => response.json())
+        .then(data => {
+            const ctx = document.getElementById('organizerChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: data.map(item => item.organizer),
+                    datasets: [{
+                        data: data.map(item => item.events),
+                        backgroundColor: colors.slice(0, data.length),
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                padding: 20,
+                                usePointStyle: true
+                            }
+                        }
+                    }
+                }
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching organizer stats:', error);
+            document.getElementById('organizerChart').parentElement.innerHTML = 
+                '<div class="flex items-center justify-center h-64 text-gray-500"><i class="fas fa-exclamation-triangle mr-2"></i>Unable to load chart</div>';
+        });
+
+    // Fetch and render popular events
+    fetch('/api/stats/popular')
+        .then(response => response.json())
+        .then(data => {
+            const ctx = document.getElementById('popularChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: data.map(item => item.event.length > 20 ? item.event.substring(0, 20) + '...' : item.event),
+                    datasets: [{
+                        label: 'Attendees',
+                        data: data.map(item => item.attendees),
+                        backgroundColor: '#3B82F6',
+                        borderColor: '#2563EB',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                stepSize: 1
+                            }
+                        },
+                        x: {
+                            ticks: {
+                                maxRotation: 45
+                            }
+                        }
+                    }
+                }
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching popular events:', error);
+            document.getElementById('popularChart').parentElement.innerHTML = 
+                '<div class="flex items-center justify-center h-64 text-gray-500"><i class="fas fa-exclamation-triangle mr-2"></i>Unable to load chart</div>';
+        });
+
+    // Fetch and render monthly statistics
+    fetch('/api/stats/monthly')
+        .then(response => response.json())
+        .then(data => {
+            const ctx = document.getElementById('monthlyChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: data.map(item => {
+                        const date = new Date(item.month + '-01');
+                        return date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+                    }),
+                    datasets: [{
+                        label: 'Events',
+                        data: data.map(item => item.events),
+                        borderColor: '#3B82F6',
+                        backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                stepSize: 1
+                            }
+                        }
+                    }
+                }
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching monthly stats:', error);
+            document.getElementById('monthlyChart').parentElement.innerHTML = 
+                '<div class="flex items-center justify-center h-80 text-gray-500"><i class="fas fa-exclamation-triangle mr-2"></i>Unable to load chart</div>';
+        });
+</script>
+{% endblock %}

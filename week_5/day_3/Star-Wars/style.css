@@ -1,0 +1,68 @@
+body {
+  margin: 0;
+  overflow: hidden;
+  background: black;
+  color: yellow;
+  font-family: Arial, sans-serif;
+}
+
+canvas {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+header {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+#logo {
+  width: 400px;
+  height: auto;
+  opacity: 0.9;
+}
+
+#controls {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 80px;
+}
+
+#info {
+  border: 1px solid yellow;
+  padding: 10px;
+  margin-bottom: 10px;
+  width: 300px;
+  min-height: 150px;
+}
+
+#findsomeone {
+  border: 1px solid rgb(236, 233, 40);
+  background: rgb(254, 254, 254);
+  color: rgb(6, 5, 5);
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 10px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+#findsomeone:hover {
+  background: rgb(254, 254, 254);
+  border: 2px solid yellow;
+  border-radius: 10px;
+  color: black;
+}

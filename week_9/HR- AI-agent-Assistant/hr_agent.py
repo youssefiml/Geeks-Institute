@@ -35,7 +35,6 @@ candidates = load_json_file(CANDIDATES_FILE)
 shortlists = load_json_file(SHORTLISTS_FILE) if SHORTLISTS_FILE.exists() else {}
 jobs = load_json_file(JOBS_FILE)
 
-# ----------------- Tools -----------------
 def search_candidates(skills: List[str], location: Optional[str] = None,
                       minExp: int = 0, maxExp: int = 100,
                       availabilityWindowDays: Optional[int] = None,
@@ -74,7 +73,6 @@ def search_candidates(skills: List[str], location: Optional[str] = None,
         if score>0:
             results.append({"candidate": c, "score": score, "reason": " → ".join(reason)})
 
-    # AI-enhanced ranking: ask GPT to rerank top candidates
     try:
         prompt = f"Rank these candidates based on best fit:\n{json.dumps(results, indent=2)}"
         resp = client.chat.completions.create(
@@ -124,7 +122,6 @@ def draft_email(recipients: List[str], job_title: str, tone: str = "friendly") -
             subject = f"Opportunity: {job_title}"
             body = ai_text
 
-        # HTML preview
         html_content = f"""
         <html>
         <body>
@@ -152,7 +149,6 @@ def analytics_summary():
         "topSkills": Counter(skills).most_common(5)
     }
 
-# ----------------- Simple Agent -----------------
 def parse_user_input(text: str) -> Dict[str, Any]:
     out = {"action": None, "params": {}}
     t = text.lower()
@@ -202,7 +198,6 @@ def agent_respond(user_text: str):
     if action == "analytics_summary":
         return analytics_summary()
 
-# ----------------- CLI -----------------
 if __name__ == "__main__":
     print("🤖 AI-Powered HR Agent CLI (all tools AI)")
     while True:

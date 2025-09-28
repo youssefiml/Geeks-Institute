@@ -1,0 +1,151 @@
+{% extends "base.html" %}
+
+{% block title %}Artists - Music Library{% endblock %}
+
+{% block content %}
+<div class="fade-in">
+    <div class="text-center mb-8">
+        <h2 class="text-4xl font-bold text-white mb-2">Artists</h2>
+        <p class="text-gray-300">All the talented musicians in your collection</p>
+    </div>
+
+    {% if artists %}
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8">
+            {% for artist in artists %}
+                <div class="bg-white/10 rounded-lg p-6 border border-white/20 hover-scale backdrop-blur-sm text-center">
+                    <div class="w-20 h-20 mx-auto mb-4 bg-white/20 rounded-full flex items-center justify-center border-2 border-white/30">
+                        <i class="fas fa-user text-2xl text-white/70"></i>
+                    </div>
+
+                    <div class="mb-4">
+                        <h3 class="text-xl font-bold text-white mb-2">{{ artist.name }}</h3>
+                        <div class="space-y-1">
+                            <div class="flex items-center justify-center text-gray-300">
+                                <i class="fas fa-flag mr-2"></i>
+                                <span class="text-sm">{{ artist.country }}</span>
+                            </div>
+                            {% if artist.formed_year %}
+                                <div class="flex items-center justify-center text-gray-400">
+                                    <i class="fas fa-calendar mr-2"></i>
+                                    <span class="text-xs">Since {{ artist.formed_year }}</span>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <a href="{{ url_for('index', search=artist.name) }}" 
+                       class="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors text-sm">
+                        <i class="fas fa-search mr-2"></i>View Albums
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="bg-white/5 rounded-lg p-6 border border-white/10 text-center">
+            <div class="text-gray-300">
+                <i class="fas fa-users text-2xl mb-2 text-purple-400"></i>
+                <p class="text-lg font-medium text-white mb-1">{{ artists|length }} Artists in Total</p>
+                <p class="text-sm">From around the world, spanning different eras</p>
+            </div>
+        </div>
+
+    {% else %}
+        <div class="text-center py-16">
+            <div class="mb-8">
+                <i class="fas fa-users text-6xl text-gray-500 mb-4"></i>
+                <h3 class="text-2xl font-bold text-white mb-2">No Artists Yet</h3>
+                <p class="text-gray-400 mb-8">Start building your artist roster by adding your first musician</p>
+            </div>
+            
+            <a href="{{ url_for('create_artist') }}" 
+               class="inline-flex items-center bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg transition-colors text-lg">
+                <i class="fas fa-user-plus mr-2"></i>Add Your First Artist
+            </a>
+        </div>
+    {% endif %}
+
+    {% if artists %}
+        <div class="mt-8 bg-white/10 rounded-lg p-6 border border-white/20 backdrop-blur-sm">
+            <h3 class="text-xl font-bold text-white mb-4 flex items-center">
+                <i class="fas fa-globe mr-2 text-green-400"></i>Artists by Country
+            </h3>
+            
+            {% set countries = {} %}
+            {% for artist in artists %}
+                {% if countries.update({artist.country: countries.get(artist.country, 0) + 1}) %}{% endif %}
+            {% endfor %}
+            
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                {% for country, count in countries.items() %}
+                    <div class="bg-white/5 rounded-lg p-3 text-center">
+                        <div class="text-white font-medium text-sm">{{ country }}</div>
+                        <div class="text-gray-400 text-xs">{{ count }} artist{{ 's' if count > 1 else '' }}</div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="mt-6 bg-white/10 rounded-lg p-6 border border-white/20 backdrop-blur-sm">
+            <h3 class="text-xl font-bold text-white mb-4 flex items-center">
+                <i class="fas fa-clock mr-2 text-blue-400"></i>Artists by Formation Era
+            </h3>
+            
+            {% set decades = {} %}
+            {% for artist in artists %}
+                {% if artist.formed_year %}
+                    {% set decade = (artist.formed_year // 10) * 10 %}
+                    {% if decades.update({decade: decades.get(decade, 0) + 1}) %}{% endif %}
+                {% endif %}
+            {% endfor %}
+            
+            {% if decades %}
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                    {% for decade, count in decades.items() | sort %}
+                        <div class="bg-white/5 rounded-lg p-3 text-center">
+                            <div class="text-white font-medium text-sm">{{ decade }}s</div>
+                            <div class="text-gray-400 text-xs">{{ count }} artist{{ 's' if count > 1 else '' }}</div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="text-gray-400 text-center py-4">
+                    <p class="text-sm">No formation years recorded</p>
+                </div>
+            {% endif %}
+        </div>
+    {% endif %}
+</div>
+
+<div class="fixed bottom-6 right-6">
+    <a href="{{ url_for('create_artist') }}" 
+       class="bg-purple-600 hover:bg-purple-700 text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center">
+        <i class="fas fa-user-plus text-xl"></i>
+    </a>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const cards = document.querySelectorAll('.grid > div');
+    cards.forEach((card, index) => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px)';
+        setTimeout(() => {
+            card.style.transition = 'all 0.5s ease';
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+        }, index * 50);
+    });
+
+    const avatars = document.querySelectorAll('.fa-user');
+    avatars.forEach(avatar => {
+        avatar.addEventListener('mouseenter', function() {
+            this.classList.add('fa-bounce');
+        });
+        
+        avatar.addEventListener('mouseleave', function() {
+            this.classList.remove('fa-bounce');
+        });
+    });
+});
+</script>
+{% endblock %}

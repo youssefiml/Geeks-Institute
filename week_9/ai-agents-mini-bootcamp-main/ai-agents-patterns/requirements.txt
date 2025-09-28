@@ -1,0 +1,7 @@
+openai==1.97.1
+requests==2.32.4
+python-dotenv
+pymongo
+nest_asyncio
+sendgrid
+pydantic

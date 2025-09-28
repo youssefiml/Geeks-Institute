@@ -1,0 +1,183 @@
+{% extends "base.html" %}
+
+{% block title %}Add New Artist - Music Library{% endblock %}
+
+{% block content %}
+<div class="fade-in max-w-2xl mx-auto">
+    <div class="text-center mb-8">
+        <h2 class="text-3xl font-bold text-white mb-2">Add New Artist</h2>
+        <p class="text-gray-300">Add a new musician or band to your collection</p>
+    </div>
+
+    <div class="bg-white/10 rounded-lg p-6 border border-white/20 backdrop-blur-sm">
+        <form method="POST" class="space-y-6">
+            <div>
+                <label for="name" class="block text-white font-medium mb-2">
+                    <i class="fas fa-user mr-2"></i>Artist Name *
+                </label>
+                <input type="text" 
+                       id="name" 
+                       name="name" 
+                       value="{{ name or '' }}"
+                       required
+                       class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                       placeholder="Enter artist or band name...">
+                <p class="text-gray-400 text-sm mt-1">This can be a solo artist or band name</p>
+            </div>
+
+            <div>
+                <label for="country" class="block text-white font-medium mb-2">
+                    <i class="fas fa-flag mr-2"></i>Country/Origin *
+                </label>
+                <input type="text" 
+                       id="country" 
+                       name="country" 
+                       value="{{ country or '' }}"
+                       required
+                       list="countries"
+                       class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                       placeholder="e.g., United States, United Kingdom, Japan...">
+                
+                <datalist id="countries">
+                    <option value="United States">
+                    <option value="United Kingdom">
+                    <option value="Canada">
+                    <option value="Australia">
+                    <option value="Germany">
+                    <option value="France">
+                    <option value="Japan">
+                    <option value="Italy">
+                    <option value="Spain">
+                    <option value="Brazil">
+                    <option value="Argentina">
+                    <option value="Sweden">
+                    <option value="Norway">
+                    <option value="Netherlands">
+                    <option value="Belgium">
+                    <option value="Ireland">
+                    <option value="South Korea">
+                    <option value="India">
+                    <option value="Mexico">
+                    <option value="Jamaica">
+                    <option value="Russia">
+                    <option value="China">
+                    <option value="South Africa">
+                    <option value="New Zealand">
+                    <option value="Denmark">
+                    <option value="Finland">
+                    <option value="Switzerland">
+                    <option value="Austria">
+                    <option value="Portugal">
+                    <option value="Greece">
+                    <option value="Turkey">
+                </datalist>
+            </div>
+
+            <div>
+                <label for="formed_year" class="block text-white font-medium mb-2">
+                    <i class="fas fa-calendar mr-2"></i>Formation Year (Optional)
+                </label>
+                <input type="number" 
+                       id="formed_year" 
+                       name="formed_year" 
+                       value="{{ formed_year or '' }}"
+                       min="1900" 
+                       max="2024"
+                       class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                       placeholder="e.g., 1960">
+                <p class="text-gray-400 text-sm mt-1">Year the artist started or band was formed</p>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-4 pt-6">
+                <button type="submit" 
+                        class="flex-1 bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg transition-colors font-medium flex items-center justify-center">
+                    <i class="fas fa-user-plus mr-2"></i>Create Artist
+                </button>
+                
+                <a href="{{ url_for('artists') }}" 
+                   class="flex-1 bg-gray-600 hover:bg-gray-700 text-white px-6 py-3 rounded-lg transition-colors font-medium flex items-center justify-center text-center">
+                    <i class="fas fa-times mr-2"></i>Cancel
+                </a>
+            </div>
+        </form>
+    </div>
+
+    <div class="mt-6 bg-blue-500/20 border border-blue-500/50 rounded-lg p-4">
+        <h3 class="text-blue-100 font-medium mb-2 flex items-center">
+            <i class="fas fa-lightbulb mr-2"></i>Tips for Adding Artists
+        </h3>
+        <ul class="text-blue-200 text-sm space-y-1">
+            <li>• Use the full official name of the artist or band</li>
+            <li>• For bands, use the country where they formed</li>
+            <li>• Formation year helps organize your collection by era</li>
+            <li>• You can always edit artist details later</li>
+        </ul>
+    </div>
+
+    <div class="mt-6 text-center">
+        <div class="text-gray-400 text-sm mb-2">Want to add an album instead?</div>
+        <a href="{{ url_for('create_album') }}" 
+           class="text-purple-400 hover:text-purple-300 underline transition-colors">
+            <i class="fas fa-compact-disc mr-1"></i>Add New Album
+        </a>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const nameInput = document.getElementById('name');
+    const countryInput = document.getElementById('country');
+    
+    function capitalizeWords(input) {
+        input.addEventListener('blur', function() {
+            this.value = this.value.replace(/\w\S*/g, function(txt) {
+                return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+            });
+        });
+    }
+    
+    capitalizeWords(nameInput);
+    capitalizeWords(countryInput);
+    
+    nameInput.addEventListener('blur', function() {
+        const name = this.value.toLowerCase();
+        const yearInput = document.getElementById('formed_year');
+        
+        if (!yearInput.value) {
+            if (name.includes('classic') || name.includes('vintage')) {
+                const suggestions = [1950, 1960, 1970];
+                yearInput.value = suggestions[Math.floor(Math.random() * suggestions.length)];
+            } else if (name.includes('new') || name.includes('young')) {
+                const suggestions = [2000, 2010, 2015];
+                yearInput.value = suggestions[Math.floor(Math.random() * suggestions.length)];
+            }
+        }
+    });
+
+    const form = document.querySelector('form');
+    const inputs = form.querySelectorAll('input[required]');
+    
+    function checkFormCompletion() {
+        const filledInputs = Array.from(inputs).filter(input => input.value.trim() !== '');
+        const progress = (filledInputs.length / inputs.length) * 100;
+        
+        const submitBtn = form.querySelector('button[type="submit"]');
+        if (progress === 100) {
+            submitBtn.classList.remove('bg-purple-600', 'hover:bg-purple-700');
+            submitBtn.classList.add('bg-green-600', 'hover:bg-green-700');
+            submitBtn.innerHTML = '<i class="fas fa-check mr-2"></i>Ready to Create';
+        } else {
+            submitBtn.classList.remove('bg-green-600', 'hover:bg-green-700');
+            submitBtn.classList.add('bg-purple-600', 'hover:bg-purple-700');
+            submitBtn.innerHTML = '<i class="fas fa-user-plus mr-2"></i>Create Artist';
+        }
+    }
+    
+    inputs.forEach(input => {
+        input.addEventListener('input', checkFormCompletion);
+    });
+    
+    checkFormCompletion();
+});
+</script>
+{% endblock %}

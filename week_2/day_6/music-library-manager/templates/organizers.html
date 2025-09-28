@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block title %}Organizers - Event Management System{% endblock %}
+
+{% block content %}
+<div class="px-4 sm:px-6 lg:px-8">
+    <!-- Header Section -->
+    <div class="glass-effect rounded-2xl p-6 mb-8">
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+            <div>
+                <h1 class="text-3xl font-bold text-white mb-2">
+                    <i class="fas fa-users mr-2"></i>Organizers
+                </h1>
+                <p class="text-blue-100">Manage event organizers and their contact information</p>
+            </div>
+            <div class="mt-4 md:mt-0">
+                <a href="{{ url_for('create_organizer') }}" class="bg-white text-blue-600 px-6 py-2 rounded-full font-medium hover:bg-blue-50 transition duration-200 shadow-md">
+                    <i class="fas fa-plus mr-2"></i>Add New Organizer
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Organizers List -->
+    {% if organizers %}
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {% for organizer in organizers %}
+        <div class="bg-white rounded-2xl shadow-lg card-hover overflow-hidden">
+            <div class="p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="bg-blue-100 rounded-full p-3">
+                        <i class="fas fa-user-tie text-blue-600 text-xl"></i>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-2xl font-bold text-blue-600">{{ organizer.event_count }}</span>
+                        <p class="text-sm text-gray-500">Events</p>
+                    </div>
+                </div>
+                
+                <h3 class="text-xl font-bold text-gray-900 mb-3">{{ organizer.name }}</h3>
+                
+                <div class="space-y-2 mb-4">
+                    <div class="flex items-center text-gray-600">
+                        <i class="fas fa-envelope mr-3 w-4"></i>
+                        <span class="text-sm">{{ organizer.email }}</span>
+                    </div>
+                    <div class="flex items-center text-gray-600">
+                        <i class="fas fa-phone mr-3 w-4"></i>
+                        <span class="text-sm">{{ organizer.phone }}</span>
+                    </div>
+                    <div class="flex items-center text-gray-600">
+                        <i class="fas fa-calendar-plus mr-3 w-4"></i>
+                        <span class="text-sm">Joined {{ organizer.created_at.strftime('%B %Y') }}</span>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between pt-4 border-t border-gray-200">
+                    <div class="text-sm text-gray-500">
+                        {% if organizer.event_count == 0 %}
+                            No events yet
+                        {% elif organizer.event_count == 1 %}
+                            1 event organized
+                        {% else %}
+                            {{ organizer.event_count }} events organized
+                        {% endif %}
+                    </div>
+                    <a href="{{ url_for('index', search=organizer.name) }}" 
+                       class="text-blue-600 hover:text-blue-800 text-sm font-medium">
+                        View Events <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    
+    {% else %}
+    <!-- Empty State -->
+    <div class="glass-effect rounded-2xl p-12 text-center">
+        <i class="fas fa-users text-6xl text-blue-200 mb-4"></i>
+        <h3 class="text-2xl font-bold text-white mb-2">No organizers yet</h3>
+        <p class="text-blue-100 mb-6">Start by adding your first event organizer.</p>
+        <a href="{{ url_for('create_organizer') }}" class="bg-white text-blue-600 px-8 py-3 rounded-full font-medium hover:bg-blue-50 transition duration-200 shadow-md">
+            <i class="fas fa-plus mr-2"></i>Add First Organizer
+        </a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
