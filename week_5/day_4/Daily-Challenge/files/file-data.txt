@@ -1,0 +1,9 @@
+Welcome to the Node.js Daily Challenge!
+
+This file contains sample data that will be read by the read-file.js module.
+
+Key Concepts Covered:
+- Node.js Module System (require/exports)
+- NPM Package Management (chalk)
+- File System Operations (fs module)
+- Project Structure and Organization

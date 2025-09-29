@@ -1,0 +1,23 @@
+{
+  "name": "daily-challenge",
+  "version": "1.0.0",
+  "description": "A comprehensive Node.js daily challenge demonstrating modules, NPM packages, and file operations",
+  "main": "challenge.js",
+  "scripts": {
+    "start": "node challenge.js",
+    "task1": "node app.js",
+    "task2": "node colorful-message.js",
+    "task3": "node read-file.js"
+  },
+  "keywords": [
+    "nodejs",
+    "modules",
+    "chalk",
+    "file-operations"
+  ],
+  "author": "Your Name",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^4.1.2"
+  }
+}
