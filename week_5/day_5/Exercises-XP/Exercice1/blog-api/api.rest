@@ -1,0 +1,22 @@
+GET http://localhost:3000/posts/
+
+
+### 
+POST http://localhost:2000/posts
+Content-Type: application/json
+[
+    {
+        "title": "My first post",
+        "content": "This is the content of my first post.",
+    }
+]
+
+###
+PUT http://localhost:2000/posts/4
+Content-Type: application/json
+[
+    {
+        "title": "React",
+        "content": "React is a JavaScript library for building user interfaces."
+    }
+]
