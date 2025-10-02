@@ -1,0 +1,78 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #fdf6e3;
+  color: #333;
+  text-align: center;
+  padding: 20px;
+}
+
+h1 {
+  color: #ff6f61;
+  font-size: 2.5rem;
+}
+
+#game {
+  background: #fff;
+  padding: 20px;
+  margin: 20px auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  max-width: 400px;
+}
+
+#emoji {
+  font-size: 4rem;
+  margin: 20px 0;
+}
+
+form label {
+  display: block;
+  margin: 10px 0;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+#submitBtn {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background: #ff6f61;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s;
+}
+
+#submitBtn:hover {
+  background: #e65b50;
+}
+
+#feedback {
+  font-size: 1.2rem;
+  margin-top: 15px;
+}
+
+#score {
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+h2 {
+  margin-top: 30px;
+  color: #444;
+}
+
+#leaderboard {
+  list-style: none;
+  padding: 0;
+}
+
+#leaderboard li {
+  background: #fff;
+  margin: 5px auto;
+  padding: 10px;
+  border-radius: 8px;
+  max-width: 300px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
