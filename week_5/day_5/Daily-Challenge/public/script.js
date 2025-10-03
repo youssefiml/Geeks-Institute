@@ -1,6 +1,11 @@
 let player = prompt("Enter your player name:");
 let currentEmoji = "";
 let options = [];
+const errorElement = document.querySelector(".error");
+
+if (!player) {
+  player = "guest";
+}
 
 async function loadGame() {
   const res = await fetch("/game");
@@ -12,7 +17,7 @@ async function loadGame() {
 
   const form = document.getElementById("guessForm");
   form.innerHTML = "";
-  options.forEach(opt => {
+  options.forEach((opt) => {
     form.innerHTML += `
       <label>
         <input type="radio" name="guess" value="${opt}" required>
@@ -30,14 +35,16 @@ document.getElementById("submitBtn").addEventListener("click", async (e) => {
   const res = await fetch("/guess", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ player, guess })
+    body: JSON.stringify({ player, guess }),
   });
+  errorElement.style.display = "none";
 
   const result = await res.json();
-  document.getElementById("feedback").textContent = result.correct
-    ? "Correct!"
-    : `Wrong! The correct answer was ${result.answer}`;
-  document.getElementById("score").textContent = `Your score: ${result.score}`;
+  if (!guess) {
+    errorElement.style.display = "block";
+    errorElement.textContent = "Please select an option.";
+    return;
+  }
 
   loadLeaderboard();
   loadGame();
@@ -48,7 +55,7 @@ async function loadLeaderboard() {
   const data = await res.json();
   const list = document.getElementById("leaderboard");
   list.innerHTML = "";
-  data.forEach(p => {
+  data.forEach((p) => {
     list.innerHTML += `<li>${p.name}: ${p.score}</li>`;
   });
 }

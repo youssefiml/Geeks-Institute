@@ -22,6 +22,12 @@ const emojis = [
   { emoji: "💻", name: "computer" },
   { emoji: "📚", name: "books" },
   { emoji: "✈️", name: "airplane" },
+  { emoji: "⚽", name: "soccer" },
+  { emoji: "🎮", name: "video game" },
+  { emoji: "🌳", name: "tree" },
+  { emoji: "🌟", name: "star" },
+  { emoji: "🌊", name: "ocean" },
+  { emoji: "🌈", name: "rainbow" },
 ];
 
 let leaderboard = [];
