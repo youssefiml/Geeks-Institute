@@ -1,9 +1,9 @@
 function compareToTen(num){
     let promise = new Promise((resolve, reject) => {
-        if(num > 10){
-            resolve(`${num} is greater than 10`)
+        if(num <= 10){
+            resolve(`${num} is less than 10`)
         } else {
-            reject(`${num} is less than 10`)
+            reject(`${num} is greater than 10`)
         }
     })
     return promise
