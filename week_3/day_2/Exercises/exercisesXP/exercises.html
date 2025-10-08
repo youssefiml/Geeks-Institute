@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //Exercise 1:
+        let sum = 0;
+        function displayNumbersDivisible(divisible) {
+            for (let i = 0; i <= 500; i++) {
+                if (i % divisible === 0) {
+                    sum += i;
+                    console.log(i);
+                }
+            }
+            console.log("Sum:", sum);
+        }
+        displayNumbersDivisible(3);
+
+        //Exercise 2:
+        const stock = {
+            "banana": 6,
+            "apple": 0,
+            "pear": 12,
+            "orange": 32,
+            "blueberry": 1
+        }
+
+        const prices = {
+            "banana": 4,
+            "apple": 2,
+            "pear": 1,
+            "orange": 1.5,
+            "blueberry": 10
+        }
+        const shoppingList = ["banana", "orange", "apple"]
+
+        function myBill() {
+            let result = 0;
+            for (let item of shoppingList) {
+                if (item in stock && stock[item] > 0) {
+                    result += prices[item]
+                    stock[item] -= 1
+                }
+            }
+            return result;
+        }
+        console.log("Total:", myBill());
+        console.log("Stock after shopping:", stock);
+
+        //Exercise 3:
+        function changeEnough(itemPrice, amountOfChange) {
+            const a = [0.25, 0.10, 0.05, 0.01];
+            let result = 0;
+            for (let i = 0; i < amountOfChange.length; i++) {
+                result += amountOfChange[i] * a[i];
+            }
+
+            if (result >= itemPrice) {
+                return true
+            }
+            else { return false }
+
+        }
+
+        console.log(changeEnough(4.25, [25, 20, 5, 0])); 
+        console.log(changeEnough(14.11, [2, 100, 0, 0]));
+        console.log(changeEnough(0.75, [0, 0, 20, 5])); 
+
+        //Exercise 4:
+        function hotelCost() {
+            let input;
+            while (true) {
+                input = Number(prompt("Enter the number of nights they would like to stay in the hotel:"));
+                if (isNaN(input)) {
+                    alert("Please enter a valid number!");
+                    continue;
+                } else {
+                    break;
+                }
+            }
+            let result = input * 140;
+            return result;
+
+
+        }
+        // console.log(hotelCost());
+
+        function planeRideCost() {
+            let input;
+            while (true) {
+                input = String(prompt("destination:"));
+                if (input === "" || !isNaN(input)) {
+                    alert("Please enter a valid destination (letters only).")
+                    continue;
+                } else {
+                    break;
+                }
+            }
+            if (input.toLowerCase() === "london") {
+                return 183;
+            } else if (input.toLowerCase() === "paris") {
+                return 220;
+            } else {
+                return 300;
+            }
+        }
+        // console.log(planeRideCost());
+        function rentalCarCost() {
+            let input;
+            while (true) {
+                input = Number(prompt("Enter the number of days they would like to rent the car:"));
+                if (isNaN(input)) {
+                    alert("Please enter a valid number!");
+                    continue;
+                } else {
+                    break;
+                }
+            }
+            let result = input * 40;
+            if (input > 10) {
+                return result * 0.95;
+            } else {
+                return result;
+            }
+        }
+        // console.log(rentalCarCost());
+        function totalVacationCost() {
+            let hotel = hotelCost();
+            let plane = planeRideCost();
+            let car = rentalCarCost();
+
+            let result = hotel + plane + car;
+
+            console.log(`The car cost: $${car}, the hotel cost: $${hotel}, the plane tickets cost: $${plane}.`);
+            console.log(`Total vacation cost: $${result}`);
+            return result;
+        }
+        totalVacationCost();
+
+        // Exercise 5:
+        <div id="container">Users:
+            <ul class="list">
+                <li>John</li>
+                <li>Pete</li>
+            </ul>
+            <ul class="list">
+                <li>David</li>
+                <li>Sarah</li>
+                <li>Dan</li>
+            </ul>
+        </div>
+        const div = document.getElementById("container");
+        console.log(div);
+
+        document.querySelectorAll("ul")[0].children[1].textContent = "Richard";
+        document.querySelectorAll("ul")[1].children[1].remove();
+
+        const lists = document.querySelectorAll("ul");
+        lists.forEach(list => list.children[0].textContent = "Youssef");
+
+        lists.forEach(list => list.classList.add("student_list"));
+        lists[0].classList.add("university", "attendance");
+
+        div.style.backgroundColor = "lightblue";
+        div.style.padding = "10px";
+
+        document.querySelectorAll("li").forEach(li => {
+            if (li.textContent === "Dan") li.style.display = "none";
+            if (li.textContent === "Richard") li.style.border = "1px solid black";
+        });
+
+        document.body.style.fontSize = "18px";
+
+        if (div.style.backgroundColor === "lightblue") {
+            const users = Array.from(div.textContent.match(/\w+/g));
+            alert(`Hello ${users.join(" and ")}`);
+        };
+
+        // Exercise 6:
+        <div id="navBar">
+            <ul>
+                <li><a href="#">Profile</a></li>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">My Friends</a></li>
+                <li><a href="#">Messenger</a></li>
+                <li><a href="#">My Pics</a></li>
+            </ul>
+        </div>
+
+        const nav = document.getElementById("navBar");
+        nav.setAttribute("id", "socialNetworkNavigation");
+
+        const newLi = document.createElement("li");
+        newLi.textContent = "Logout";
+        nav.querySelector("ul").appendChild(newLi);
+
+        const ul = nav.querySelector("ul");
+        console.log("First:", ul.firstElementChild.textContent);
+        console.log("Last:", ul.lastElementChild.textContent);
+
+        // Exercise 7:
+
+        const allBooks = [
+            {title: "Harry Potter", author: "J.K. Rowling", image: "https://via.placeholder.com/100", alreadyRead: true},
+            {title: "The Hobbit", author: "J.R.R. Tolkien", image: "https://via.placeholder.com/100", alreadyRead: false}
+        ];
+
+        const section = document.querySelector(".listBooks");
+
+        allBooks.forEach(book => {
+            const div = document.createElement("div");
+            div.innerHTML = `<p>${book.title} written by ${book.author}</p>`;
+            const img = document.createElement("img");
+            img.src = book.image;
+            div.appendChild(img);
+            if (book.alreadyRead) div.style.color = "red";
+            section.appendChild(div);
+        });
+    </script>
+</body>
+
+</html>
+
+</html>
