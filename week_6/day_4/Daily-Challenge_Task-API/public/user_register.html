@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - User Management</title>
+</head>
+<body>
+    <h1>User Registration</h1>
+    
+    <form id="registerForm">
+        <div>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        
+        <div>
+            <label for="confirmPassword">Confirm Password:</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" required>
+        </div>
+        
+        <button type="submit" id="submitBtn" disabled>Register</button>
+    </form>
+    
+    <div id="message"></div>
+    
+    <p>Already have an account? <a href="/login.html">Login here</a></p>
+
+    <script>
+        const form = document.getElementById('registerForm');
+        const username = document.getElementById('username');
+        const email = document.getElementById('email');
+        const password = document.getElementById('password');
+        const confirmPassword = document.getElementById('confirmPassword');
+        const submitBtn = document.getElementById('submitBtn');
+        const messageDiv = document.getElementById('message');
+
+        function checkInputs() {
+            if (username.value.trim() !== '' && 
+                email.value.trim() !== '' && 
+                password.value.trim() !== '' && 
+                confirmPassword.value.trim() !== '') {
+                submitBtn.disabled = false;
+            } else {
+                submitBtn.disabled = true;
+            }
+        }
+
+        username.addEventListener('input', checkInputs);
+        email.addEventListener('input', checkInputs);
+        password.addEventListener('input', checkInputs);
+        confirmPassword.addEventListener('input', checkInputs);
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            if (password.value !== confirmPassword.value) {
+                messageDiv.textContent = 'Passwords do not match!';
+                messageDiv.style.color = 'red';
+                return;
+            }
+
+            const userData = {
+                username: username.value,
+                email: email.value,
+                password: password.value
+            };
+
+            try {
+                const response = await fetch('/api/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(userData)
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    messageDiv.textContent = 'Registration successful! Redirecting to login...';
+                    messageDiv.style.color = 'green';
+                    setTimeout(() => {
+                        window.location.href = '/login.html';
+                    }, 2000);
+                } else {
+                    messageDiv.textContent = data.error || 'Registration failed';
+                    messageDiv.style.color = 'red';
+                }
+            } catch (error) {
+                messageDiv.textContent = 'Error: ' + error.message;
+                messageDiv.style.color = 'red';
+            }
+        });
+    </script>
+</body>
+</html>

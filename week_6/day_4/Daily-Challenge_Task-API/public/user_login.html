@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - User Management</title>
+</head>
+<body>
+    <h1>User Login</h1>
+    
+    <form id="loginForm">
+        <div>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        
+        <button type="submit" id="submitBtn" disabled>Login</button>
+    </form>
+    
+    <div id="message"></div>
+    
+    <p>Don't have an account? <a href="/register.html">Register here</a></p>
+
+    <script>
+        const form = document.getElementById('loginForm');
+        const username = document.getElementById('username');
+        const password = document.getElementById('password');
+        const submitBtn = document.getElementById('submitBtn');
+        const messageDiv = document.getElementById('message');
+
+        function checkInputs() {
+            if (username.value.trim() !== '' && password.value.trim() !== '') {
+                submitBtn.disabled = false;
+            } else {
+                submitBtn.disabled = true;
+            }
+        }
+
+        username.addEventListener('input', checkInputs);
+        password.addEventListener('input', checkInputs);
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const credentials = {
+                username: username.value,
+                password: password.value
+            };
+
+            try {
+                const response = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(credentials)
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    messageDiv.textContent = 'Login successful! Welcome, ' + data.data.username;
+                    messageDiv.style.color = 'green';
+                    
+                    localStorage.setItem('user', JSON.stringify(data.data));
+                    
+                    setTimeout(() => {
+                        messageDiv.textContent += ' (Logged in)';
+                    }, 1000);
+                } else {
+                    messageDiv.textContent = data.error || 'Login failed';
+                    messageDiv.style.color = 'red';
+                }
+            } catch (error) {
+                messageDiv.textContent = 'Error: ' + error.message;
+                messageDiv.style.color = 'red';
+            }
+        });
+    </script>
+</body>
+</html>

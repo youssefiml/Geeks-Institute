@@ -1,0 +1,64 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f6f8;
+  color: #222;
+}
+
+.container {
+  width: 800px;
+  margin: 20px auto;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(10, 40px);
+  gap: 4px;
+  margin-top: 10px;
+}
+
+.cell {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border: 1px solid #ccc;
+}
+
+.cell.obstacle {
+  background: #444;
+  color: white;
+}
+
+.cell.baseA {
+  background: #e3f2fd;
+}
+
+.cell.baseB {
+  background: #ffebee;
+}
+
+.cell.playerA {
+  background: #1976d2;
+  color: white;
+}
+
+.cell.playerB {
+  background: #c62828;
+  color: white;
+}
+
+.controls {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.move-controls {
+  margin-top: 12px;
+}
+
+#info {
+  margin-top: 10px;
+}

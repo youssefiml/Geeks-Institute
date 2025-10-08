@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Simple Chat</title>
+    <link rel="stylesheet" href="/chat.css" />
+  </head>
+  <body>
+    <div id="wrap">
+      <div id="entry" class="card center">
+        <h2>Bienvenue — Chat en temps réel</h2>
+        <input id="username" placeholder="Nom d'utilisateur" maxlength="24" />
+        <input id="room" placeholder="Nom de la salle (ex: general)" maxlength="32" />
+        <div class="row">
+          <button id="joinBtn" class="btn primary">Entrer</button>
+        </div>
+        <p class="muted">Choisissez un nom et une salle pour commencer</p>
+      </div>
+
+      <div id="chatScreen" class="hidden">
+        <aside class="sidebar">
+          <div class="logo">ChatApp</div>
+          <div class="room-info">
+            <strong id="roomName">—</strong>
+            <div class="muted">Salle active</div>
+          </div>
+
+          <div class="users">
+            <h4>Utilisateurs</h4>
+            <ul id="usersList"></ul>
+          </div>
+
+          <div class="controls">
+            <button id="leaveBtn" class="btn danger">Quitter</button>
+          </div>
+        </aside>
+
+        <main class="main">
+          <header class="main-head">
+            <div>
+              <h3 id="hdrRoom">—</h3>
+              <div id="typing" class="muted small"></div>
+            </div>
+          </header>
+
+          <section id="messages" class="messages"></section>
+
+          <footer class="composer">
+            <input id="msgInput" placeholder="Écrire un message..." autocomplete="off" />
+            <button id="sendBtn" class="btn primary">Envoyer</button>
+          </footer>
+        </main>
+      </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/chat.js"></script>
+  </body>
+</html>
