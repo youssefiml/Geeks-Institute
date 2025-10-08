@@ -29,6 +29,17 @@
             "database": "dvdrental",
             "username": "postgres",
             "password": "Youssef2003@"
+        },
+        {
+            "ssh": "Disabled",
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "askForPassword": true,
+            "driver": "PostgreSQL",
+            "name": "js",
+            "database": "mydb",
+            "username": "postgres"
         }
     ]
 }
